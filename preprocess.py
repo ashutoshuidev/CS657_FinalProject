@@ -6,7 +6,7 @@ if __name__ == "__main__":
     spark = SparkSession.builder.appName("657Project").getOrCreate()
 
     data = spark.read.option("header", "true").option("inferSchema", "true").parquet("train.parquet")
-    # data = data.select(data.columns[:15])
+    data = data.select(data.columns[:15])
     
     data = data.withColumn("index", monotonically_increasing_id())
     data.show(5)
